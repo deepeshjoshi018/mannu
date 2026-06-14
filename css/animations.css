@@ -1,0 +1,31 @@
+/* Animations */
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.6); } 50% { opacity: 1; transform: scaleY(1); } }
+@keyframes loaderHeartFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.15); } }
+@keyframes orbFloat { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(25px,-20px) scale(1.05); } 66% { transform: translate(-15px,15px) scale(0.97); } }
+@keyframes twinkle { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+@keyframes heroFloat { 0%, 100% { transform: rotate(var(--r,0deg)) translateY(0); } 50% { transform: rotate(var(--r,0deg)) translateY(-8px); } }
+@keyframes birthdayBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes finalPulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.08); } }
+@keyframes footerHeartGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(236,64,122,0.5)); } 50% { transform: scale(1.15); filter: drop-shadow(0 0 20px rgba(236,64,122,0.8)); } }
+@keyframes surpriseReveal { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes giftGlow { 0%, 100% { box-shadow: 0 15px 40px rgba(236,64,122,0.4); } 50% { box-shadow: 0 15px 60px rgba(236,64,122,0.7); } }
+@keyframes musicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes gameHeartFall { from { transform: translateY(-40px); opacity: 1; } to { transform: translateY(420px); opacity: 0.3; } }
+@keyframes floatHeart {
+  0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+  10% { opacity: 1; transform: translateY(90vh) rotate(15deg) scale(1); }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(0.4); opacity: 0; }
+}
+.floating-heart {
+  position: fixed; pointer-events: none; z-index: 1;
+  animation: floatHeart var(--dur, 8s) linear forwards;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}

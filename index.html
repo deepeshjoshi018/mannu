@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A digital love story for Mannu ❤️ — by Deepesh">
+  <title>For My Mannu ❤️ | Deepesh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="loader" class="loader">
+    <div class="loader-hearts" aria-hidden="true">
+      <span>❤</span><span>💕</span><span>❤</span><span>💗</span><span>❤</span>
+    </div>
+    <div class="loader-ring"></div>
+    <p class="loader-text">Loading our love story...</p>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Canvases -->
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="petalCanvas"></canvas>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav glass" id="nav">
+    <a href="#hero" class="nav-logo">Mannu ❤️</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#polaroid">Polaroids</a></li>
+      <li><a href="#birthday">Birthday</a></li>
+      <li><a href="#reasons">100 Reasons</a></li>
+      <li><a href="#letter">Letter</a></li>
+      <li><a href="#game">Game</a></li>
+      <li><a href="#surprise">Surprise</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="musicToggle" title="Music" aria-label="Toggle music">🎵</button>
+      <button class="icon-btn" id="themeToggle" title="Day/Night" aria-label="Toggle theme">🌙</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Music player (hidden audio) -->
+  <div class="music-player glass" id="musicPlayer">
+    <span class="music-label">Our Song ♫</span>
+    <audio id="bgMusic" loop preload="auto">
+      <source src="music/love.mp3" type="audio/mpeg">
+    </audio>
+    <input type="range" id="volumeSlider" min="0" max="100" value="40" aria-label="Volume">
+  </div>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero">
+      <div class="hero-parallax">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-stars"></div>
+      </div>
+      <div class="hero-content reveal">
+        <p class="hero-eyebrow" id="heroEyebrow"></p>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-subtitle" id="heroSubtitle"></p>
+        <div class="hero-btns">
+          <a href="#gallery" class="btn-primary">Enter Our World</a>
+          <a href="#surprise" class="btn-outline">A Surprise Awaits</a>
+        </div>
+      </div>
+      <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+      <div class="hero-strip" id="heroStrip"></div>
+    </section>
+
+    <!-- ===== LOVE METER ===== -->
+    <section id="lovemeter" class="section lovemeter-section">
+      <div class="container">
+        <div class="lovemeter-card glass reveal">
+          <span class="section-tag">Our Love</span>
+          <h2 class="section-title">Love Meter</h2>
+          <div class="lovemeter-bar-wrap">
+            <div class="lovemeter-bar" id="lovemeterBar"></div>
+          </div>
+          <p class="lovemeter-label" id="lovemeterLabel">Calculating love...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="section gallery-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Our Moments</span>
+          <h2 class="section-title">Photo Gallery</h2>
+          <p class="section-desc">Every picture holds a piece of my heart.</p>
+        </header>
+        <div class="gallery-filters reveal" id="galleryFilters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="may20">May 20 🎂</button>
+          <button class="filter-btn" data-filter="may22">May 22</button>
+          <button class="filter-btn" data-filter="march">March</button>
+        </div>
+        <div class="gallery-masonry" id="galleryMasonry"></div>
+      </div>
+    </section>
+
+    <!-- ===== POLAROID WALL ===== -->
+    <section id="polaroid" class="section polaroid-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Captured Forever</span>
+          <h2 class="section-title">Polaroid Wall</h2>
+        </header>
+        <div class="polaroid-wall" id="polaroidWall"></div>
+      </div>
+    </section>
+
+    <!-- ===== BIRTHDAY + COUNTDOWN ===== -->
+    <section id="birthday" class="section birthday-section">
+      <div class="container">
+        <div class="birthday-grid">
+          <div class="birthday-card glass reveal">
+            <div class="birthday-glow"></div>
+            <div class="birthday-cake">🎂</div>
+            <h2>Happy Birthday, Mannu!</h2>
+            <p class="birthday-name">Meenakshi · <span>20 May</span></p>
+            <p class="birthday-msg">To the queen of my heart — may every day be as magical as you are.</p>
+          </div>
+          <div class="countdown-card glass reveal">
+            <h3>Countdown to Your Birthday</h3>
+            <div class="countdown" id="countdown">
+              <div class="countdown-item"><span id="cdDays">00</span><small>Days</small></div>
+              <div class="countdown-item"><span id="cdHours">00</span><small>Hours</small></div>
+              <div class="countdown-item"><span id="cdMins">00</span><small>Mins</small></div>
+              <div class="countdown-item"><span id="cdSecs">00</span><small>Secs</small></div>
+            </div>
+            <p class="countdown-note" id="countdownNote"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TYPEWRITER ===== -->
+    <section id="messages" class="section messages-section">
+      <div class="container">
+        <div class="typewriter-box glass reveal">
+          <span class="section-tag">From My Heart</span>
+          <p class="typewriter-output" id="typewriterOutput"></p>
+          <span class="typewriter-cursor">|</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 100 REASONS ===== -->
+    <section id="reasons" class="section reasons-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Why You're Everything</span>
+          <h2 class="section-title">100 Reasons I Love You</h2>
+        </header>
+        <div class="reason-generator glass reveal">
+          <div class="reason-number" id="reasonNumber">#1</div>
+          <p class="reason-text" id="reasonText">Click below to discover a reason...</p>
+          <button class="btn-primary" id="reasonBtn">Show Me Another Reason ❤️</button>
+          <p class="reason-counter" id="reasonCounter">0 / 100 discovered</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPLIMENT GENERATOR ===== -->
+    <section id="compliment" class="section compliment-section">
+      <div class="container">
+        <div class="compliment-card glass reveal">
+          <h2 class="section-title">A Compliment For You</h2>
+          <p class="compliment-text" id="complimentText">You are absolutely amazing, Mannu.</p>
+          <button class="btn-outline" id="complimentBtn">New Compliment ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FUTURE DREAMS ===== -->
+    <section id="dreams" class="section dreams-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Our Future</span>
+          <h2 class="section-title">Dreams Together</h2>
+        </header>
+        <div class="dreams-grid" id="dreamsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== PASSWORD LOVE LETTER ===== -->
+    <section id="letter" class="section letter-section">
+      <div class="container">
+        <div class="letter-lock glass reveal" id="letterLock">
+          <span class="letter-lock-icon">🔒</span>
+          <h2>Secret Love Letter</h2>
+          <p>Enter the password to unlock my heart...</p>
+          <div class="letter-form">
+            <input type="password" id="letterPassword" placeholder="Password..." autocomplete="off">
+            <button class="btn-primary" id="letterUnlock">Unlock ❤️</button>
+          </div>
+          <p class="letter-hint">Hint: What do I call you? 💕</p>
+          <p class="letter-error" id="letterError" hidden>Wrong password, try again!</p>
+        </div>
+        <div class="letter-content glass reveal" id="letterContent" hidden>
+          <div class="letter-deco">✦ ❦ ✦</div>
+          <h2>My Dearest Mannu,</h2>
+          <div class="letter-body" id="letterBody"></div>
+          <p class="letter-sign">Forever Yours,<br><strong>Deepesh ❤️</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HEART GAME ===== -->
+    <section id="game" class="section game-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Mini Game</span>
+          <h2 class="section-title">Catch My Hearts!</h2>
+          <p class="section-desc">Click the falling hearts before they disappear. How many can you catch?</p>
+        </header>
+        <div class="game-wrap glass reveal">
+          <div class="game-hud">
+            <span>Score: <strong id="gameScore">0</strong></span>
+            <span>Time: <strong id="gameTime">30</strong>s</span>
+            <button class="btn-primary" id="gameStart">Start Game ❤️</button>
+          </div>
+          <div class="game-area" id="gameArea"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SURPRISE GIFT ===== -->
+    <section id="surprise" class="section surprise-section">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">For You Only</span>
+          <h2 class="section-title">A Special Surprise</h2>
+        </header>
+        <div class="gift-wrap reveal">
+          <div class="gift-box" id="giftBox">
+            <div class="gift-lid" id="giftLid">
+              <div class="gift-bow">🎀</div>
+            </div>
+            <div class="gift-base">
+              <p>Click Me Mannu ❤️</p>
+            </div>
+          </div>
+          <div class="surprise-message glass" id="surpriseMessage" hidden>
+            <p>Mannu, you are the dream I never want to wake up from. Every moment with you feels like magic. I promise to cherish you, protect your heart, and love you more with every sunrise. You are my forever. ❤️</p>
+            <p class="surprise-from">— Deepesh</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL ===== -->
+    <section id="final" class="section final-section">
+      <div class="final-glow"></div>
+      <p class="final-text reveal">Mannu, you are my happiness, my peace, and my favorite person in this world. ❤️</p>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-heart">❤</div>
+    <p class="footer-main">Forever Yours, <strong>Deepesh</strong> ❤️</p>
+    <p class="footer-sub">Made with infinite love for Mannu</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-prev" id="lbPrev" aria-label="Prev">&#10094;</button>
+    <button class="lb-next" id="lbNext" aria-label="Next">&#10095;</button>
+    <img src="" alt="Mannu" id="lbImg">
+    <p class="lb-caption" id="lbCaption"></p>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/photos-data.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
